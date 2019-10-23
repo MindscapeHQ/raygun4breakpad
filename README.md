@@ -1,5 +1,6 @@
 # raygun4breakpad
-Support for Breakpad with Raygun
+
+Support for Breakpad with Raygun.
 
 ## Setup
 
@@ -9,7 +10,7 @@ Run the install_deps.sh script to pull down the repository dependencies.
 
 ### MacOS 
 
-Build using the Make file.
+Build from terminal using the Make file.
 > cd raygun4breakpad/sampleapp_macos && make
 
 ### Linux
