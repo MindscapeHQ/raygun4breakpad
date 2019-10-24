@@ -16,7 +16,7 @@ Build from terminal using the Make file.
 Once completed a new directory called 'build' will be generated and contains the following files.
 
 | File                    | Description
-| ----------------------- | ----------------------
+|:----------------------- |:----------------------
 | dump_syms.exe           | Program for converting dSYM files to SYM files
 | dump_syms.dSYM          | Apple symbol file for the dump_syms program
 | libclient.a             | Breakpad exception handling library used by the sampleapp program
