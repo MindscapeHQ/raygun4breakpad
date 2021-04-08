@@ -58,6 +58,7 @@ libclient_OBJ = \
 	deps/breakpad/src/client/linux/dump_writer_common/thread_info.o \
 	deps/breakpad/src/client/linux/dump_writer_common/ucontext_reader.o \
 	deps/breakpad/src/client/linux/handler/exception_handler.o \
+	deps/breakpad/src/common/linux/breakpad_getcontext.o \
 	deps/breakpad/src/client/linux/handler/minidump_descriptor.o \
 	deps/breakpad/src/client/linux/log/log.o \
 	deps/breakpad/src/client/linux/microdump_writer/microdump_writer.o \
@@ -190,6 +191,10 @@ $(OUT_DIR)/%.o: $(TOP_DIR)/%.cpp
 	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 
 $(OUT_DIR)/%.o: $(TOP_DIR)/%.mm
+	@mkdir -p $(@D)
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+
+$(OUT_DIR)/%.o: $(TOP_DIR)/%.S
 	@mkdir -p $(@D)
 	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 
