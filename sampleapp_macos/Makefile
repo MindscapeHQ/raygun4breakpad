@@ -10,9 +10,6 @@ FLAGS += \
 	$(if $OMIT_FP, -fomit-frame-pointer) \
 	-DHAVE_MACH_O_NLIST_H \
 	-DBPLOG_MINIMUM_SEVERITY=SEVERITY_ERROR \
-	-Duint64=uint64_t \
-    -Duint32=uint32_t  \
-	-Dint32=int32_t \
 	$(NULL)
 
 CFLAGS += \
