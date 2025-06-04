@@ -13,6 +13,24 @@ Run the install_deps.sh script to pull down the repository dependencies.
 Build from terminal using the Make file.
 `cd raygun4breakpad/sampleapp_macos && make`
 
+#### Troubleshooting
+
+If compilation fails with:
+
+```
+fatal error: 'mach/ppc/thread_status.h' file not found
+```
+
+Open `deps/breakpad/src/client/mac/handler/minidump_generator.h` and remove the following code:
+
+```c
+#if !TARGET_OS_IPHONE && (MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_7)
+  #define HAS_PPC_SUPPORT
+#endif
+```
+
+---
+
 Once completed a new directory called 'build' will be generated and contains the following files.
 
 | File                    | Description

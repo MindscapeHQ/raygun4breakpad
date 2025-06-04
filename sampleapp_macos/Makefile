@@ -10,6 +10,9 @@ FLAGS += \
 	$(if $OMIT_FP, -fomit-frame-pointer) \
 	-DHAVE_MACH_O_NLIST_H \
 	-DBPLOG_MINIMUM_SEVERITY=SEVERITY_ERROR \
+	-Duint64=uint64_t \
+    -Duint32=uint32_t  \
+	-Dint32=int32_t \
 	$(NULL)
 
 CFLAGS += \
@@ -18,7 +21,7 @@ CFLAGS += \
 
 CXXFLAGS += \
 	$(FLAGS) \
-	-std=c++11 \
+	-std=c++17 \
 	-I$(TOP_DIR)/deps \
 	-I$(TOP_DIR)/deps/breakpad/src \
 	$(NULL)
@@ -66,6 +69,7 @@ libclient_OBJ = \
 	deps/breakpad/src/common/mac/macho_id.o \
 	deps/breakpad/src/common/mac/macho_utilities.o \
 	deps/breakpad/src/common/mac/macho_walker.o \
+	deps/breakpad/src/common/mac/arch_utilities.o \
 	deps/breakpad/src/common/mac/string_utilities.o \
 	deps/breakpad/src/common/mac/MachIPC.o \
 	$(NULL)
@@ -109,6 +113,8 @@ minidump_stackwalk_OBJ = \
 	deps/breakpad/src/processor/stackwalker_ppc.o \
 	deps/breakpad/src/processor/stackwalker_ppc64.o \
 	deps/breakpad/src/processor/stackwalker_sparc.o \
+	deps/breakpad/src/processor/stackwalker_riscv.o \
+	deps/breakpad/src/processor/stackwalker_riscv64.o \
 	deps/breakpad/src/processor/stackwalker_x86.o \
 	deps/breakpad/src/processor/symbolic_constants_win.o \
 	deps/breakpad/src/processor/tokenize.o \
@@ -122,7 +128,6 @@ dump_syms_OBJ = \
 	deps/breakpad/src/common/dwarf/dwarf2diehandler.o \
 	deps/breakpad/src/common/dwarf/dwarf2reader.o \
 	deps/breakpad/src/common/dwarf/elf_reader.o \
-	deps/breakpad/src/common/dwarf/functioninfo.o \
 	deps/breakpad/src/common/dwarf_cfi_to_module.o \
 	deps/breakpad/src/common/dwarf_cu_to_module.o \
 	deps/breakpad/src/common/dwarf_line_to_module.o \
@@ -137,6 +142,7 @@ dump_syms_OBJ = \
 	deps/breakpad/src/common/mac/macho_reader.o \
 	deps/breakpad/src/common/mac/macho_utilities.o \
 	deps/breakpad/src/common/mac/macho_walker.o \
+	deps/breakpad/src/common/mac/arch_utilities.o \
 	deps/breakpad/src/common/mac/string_utilities.o \
 	deps/breakpad/src/common/md5.o \
 	deps/breakpad/src/common/module.o \
