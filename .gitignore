@@ -4,3 +4,7 @@ deps/
 # Build artifacts
 sampleapp_linux/build/
 sampleapp_macos/build/
+
+# Dev artifacts
+.vscode/
+
