@@ -87,17 +87,17 @@ sampleapp_OBJ = \
 	$(NULL)
 
 minidump_stackwalk_OBJ = \
-    deps/breakpad/src/common/path_helper.o \
-    deps/breakpad/src/processor/basic_code_modules.o \
-    deps/breakpad/src/processor/basic_source_line_resolver.o \
-    deps/breakpad/src/processor/call_stack.o \
-    deps/breakpad/src/processor/cfi_frame_info.o \
-    deps/breakpad/src/processor/convert_old_arm64_context.o \
-    deps/breakpad/src/processor/disassembler_x86.o \
-    deps/breakpad/src/processor/disassembler_objdump.o \
-    deps/breakpad/src/processor/dump_context.o \
-    deps/breakpad/src/processor/dump_object.o \
-    deps/breakpad/src/processor/exploitability.o \
+	deps/breakpad/src/common/path_helper.o \
+	deps/breakpad/src/processor/basic_code_modules.o \
+	deps/breakpad/src/processor/basic_source_line_resolver.o \
+	deps/breakpad/src/processor/call_stack.o \
+	deps/breakpad/src/processor/cfi_frame_info.o \
+	deps/breakpad/src/processor/convert_old_arm64_context.o \
+	deps/breakpad/src/processor/disassembler_x86.o \
+	deps/breakpad/src/processor/disassembler_objdump.o \
+	deps/breakpad/src/processor/dump_context.o \
+	deps/breakpad/src/processor/dump_object.o \
+	deps/breakpad/src/processor/exploitability.o \
 	deps/breakpad/src/processor/exploitability_linux.o \
 	deps/breakpad/src/processor/exploitability_win.o \
 	deps/breakpad/src/processor/logging.o \
