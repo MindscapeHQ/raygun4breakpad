@@ -19,7 +19,7 @@ CFLAGS += \
 
 CXXFLAGS += \
 	$(FLAGS) \
-	-std=c++11 \
+	-std=c++17 \
 	-I$(TOP_DIR)/deps \
 	-I$(TOP_DIR)/deps/breakpad/src \
 	$(NULL)
@@ -65,6 +65,7 @@ libclient_OBJ = \
 	deps/breakpad/src/client/linux/minidump_writer/linux_dumper.o \
 	deps/breakpad/src/client/linux/minidump_writer/linux_ptrace_dumper.o \
 	deps/breakpad/src/client/linux/minidump_writer/minidump_writer.o \
+	deps/breakpad/src/client/linux/minidump_writer/pe_file.o \
 	deps/breakpad/src/client/minidump_file_writer.o \
 	deps/breakpad/src/common/convert_UTF.o \
 	deps/breakpad/src/common/md5.o \
@@ -76,6 +77,8 @@ libclient_OBJ = \
 	deps/breakpad/src/common/linux/linux_libc_support.o \
 	deps/breakpad/src/common/linux/memory_mapped_file.o \
 	deps/breakpad/src/common/linux/safe_readlink.o \
+	deps/breakpad/src/common/linux/breakpad_getcontext.o \
+	deps/breakpad/src/common/linux/scoped_tmpfile.o \
 	$(NULL)
 
 sampleapp_OBJ = \
@@ -84,16 +87,17 @@ sampleapp_OBJ = \
 	$(NULL)
 
 minidump_stackwalk_OBJ = \
-	deps/breakpad/src/common/path_helper.o \
-	deps/breakpad/src/processor/basic_code_modules.o \
-	deps/breakpad/src/processor/basic_source_line_resolver.o \
-	deps/breakpad/src/processor/call_stack.o \
-	deps/breakpad/src/processor/cfi_frame_info.o \
-	deps/breakpad/src/processor/convert_old_arm64_context.o \
-	deps/breakpad/src/processor/disassembler_x86.o \
-	deps/breakpad/src/processor/dump_context.o \
-	deps/breakpad/src/processor/dump_object.o \
-	deps/breakpad/src/processor/exploitability.o \
+    deps/breakpad/src/common/path_helper.o \
+    deps/breakpad/src/processor/basic_code_modules.o \
+    deps/breakpad/src/processor/basic_source_line_resolver.o \
+    deps/breakpad/src/processor/call_stack.o \
+    deps/breakpad/src/processor/cfi_frame_info.o \
+    deps/breakpad/src/processor/convert_old_arm64_context.o \
+    deps/breakpad/src/processor/disassembler_x86.o \
+    deps/breakpad/src/processor/disassembler_objdump.o \
+    deps/breakpad/src/processor/dump_context.o \
+    deps/breakpad/src/processor/dump_object.o \
+    deps/breakpad/src/processor/exploitability.o \
 	deps/breakpad/src/processor/exploitability_linux.o \
 	deps/breakpad/src/processor/exploitability_win.o \
 	deps/breakpad/src/processor/logging.o \
@@ -172,7 +176,7 @@ $(LIBRARIES:%=$(OUT_DIR)/lib%.a): %.a: $$(addprefix $(OUT_DIR)/,$$($$(*F)_OBJ))
 
 .SECONDEXPANSION:
 $(BINARIES:%=$(OUT_DIR)/%): %: $$(addprefix $(OUT_DIR)/,$$($$(*F)_OBJ))
-	$(LINK.cpp) -o $@ $^ -lpthread
+	$(LINK.cpp) -o $@ $^ -lpthread -lz
 	objcopy --only-keep-debug $@ $@.debug
 	strip -g $@
 	objcopy --add-gnu-debuglink=$@.debug $@
@@ -190,6 +194,10 @@ $(OUT_DIR)/%.o: $(TOP_DIR)/%.cpp
 	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 
 $(OUT_DIR)/%.o: $(TOP_DIR)/%.mm
+	@mkdir -p $(@D)
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+
+$(OUT_DIR)/%.o: $(TOP_DIR)/%.S
 	@mkdir -p $(@D)
 	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 

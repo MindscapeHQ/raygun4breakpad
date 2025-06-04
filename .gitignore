@@ -1,0 +1,5 @@
+# Ignore breakpad source directory
+deps/
+
+# Build artifacts
+sampleapp_linux/build/
