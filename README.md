@@ -12,11 +12,14 @@ Upload the resulting file to Raygun using the `send_minidump.sh` script containe
   - `sampleapp_linux/send_minidump.sh`: Code to send dump files to Raygun
 - `sampleapp_macos`: Contains MacOS sample project
   - `sampleapp_macos/send_minidump.sh`: Code to send dump files to Raygun
+- `sampleapp_windows`: Contains Windows sample project
 - `deps`: Empty folder to download dependencies (Breakpad)
 
 ## Setup
 
 Run the `install_deps.sh` script to pull down the repository dependencies.
+
+On Windows run the `install_deps.bat` script.
 
 ### Linux
 
@@ -27,6 +30,26 @@ Build from terminal using the Make file.
 
 Build from terminal using the Make file.
 `cd sampleapp_macos && make`
+
+### Windows
+
+The Windows sample will upload the minidumps automatically if properly configured.
+
+Modify the `main.cpp` and change `YOUR_API_KEY` with your Raygun API key.
+
+Build from Visual Studio using the `RaygunBreakpad.sln` or use the `build.bat` script if you have `msbuild` installed.
+
+Run the compiled file `x64/Debug/RaygunBreakpad.exe`.
+
+You should see a similar output to:
+
+```
+..\raygun4breakpad\sampleapp_windows\x64\Debug> .\RaygunBreakpad.exe
+
+Minidump callback called with dump_path: 000001BDA43D78B8, minidump_id: 000001BDA43EDF70, succeeded: 1
+Minidump file created at: c26b573b-e2f9-49c8-b437-1812c25d9a63.dmp
+Crash report sent: 1
+```
 
 #### Troubleshooting
 

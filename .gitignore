@@ -4,6 +4,10 @@ deps/
 # Build artifacts
 sampleapp_linux/build/
 sampleapp_macos/build/
+sampleapp_windows/RaygunBreakpad/*
+sampleapp_windows/x64/*
+**/Debug/*
+**/.vs/*
 
 # Dev artifacts
 .vscode/
