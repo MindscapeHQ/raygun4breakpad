@@ -44,10 +44,10 @@ Run the compiled file `x64/Debug/RaygunBreakpad.exe`.
 You should see a similar output to:
 
 ```
-..\raygun4breakpad\sampleapp_windows\x64\Debug> .\RaygunBreakpad.exe
+raygun4breakpad\sampleapp_windows\x64\Debug> .\RaygunBreakpad.exe
 
-Minidump callback called with dump_path: 000001BDA43D78B8, minidump_id: 000001BDA43EDF70, succeeded: 1
-Minidump file created at: c26b573b-e2f9-49c8-b437-1812c25d9a63.dmp
+Minidump callback called with dump_path: ., minidump_id: 603b9607-249c-4869-9f08-b1377eb13dc9, succeeded: 1
+Minidump file created at: 603b9607-249c-4869-9f08-b1377eb13dc9.dmp
 Crash report sent: 1
 ```
 

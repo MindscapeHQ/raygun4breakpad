@@ -5,7 +5,7 @@
 
 bool minidump_callback(const wchar_t *dump_path, const wchar_t *minidump_id, void *context, EXCEPTION_POINTERS *exinfo, MDRawAssertionInfo *assertion, bool succeeded)
 {
-   std::cout << "Minidump callback called with dump_path: " << dump_path << ", minidump_id: " << minidump_id << ", succeeded: " << succeeded << std::endl;
+   std::wcout << L"Minidump callback called with dump_path: " << dump_path << L", minidump_id: " << minidump_id << L", succeeded: " << succeeded << std::endl;
    google_breakpad::CrashReportSender sender(L"crash.checkpoint");
 
    std::wstring filename = minidump_id;
