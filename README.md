@@ -1,10 +1,12 @@
 # raygun4breakpad
 
-Breakpad sample projects for Linux and MacOS to use with Raygun.com.
+Breakpad sample projects for Windows, Linux and MacOS to use with Raygun.com.
 
 Each sample is a small code project that integrates with the Breakpad source. When executed, the application crashes and creates a crash dump file (`.dmp`).
 
 Upload the resulting file to Raygun using the `send_minidump.sh` script contained in each sample folder.
+
+The Windows sample uses Breakpad's `CrashReportSender` to upload minidumps automatically.
 
 ## Project structure
 
@@ -12,11 +14,14 @@ Upload the resulting file to Raygun using the `send_minidump.sh` script containe
   - `sampleapp_linux/send_minidump.sh`: Code to send dump files to Raygun
 - `sampleapp_macos`: Contains MacOS sample project
   - `sampleapp_macos/send_minidump.sh`: Code to send dump files to Raygun
+- `sampleapp_windows`: Contains Windows sample project
 - `deps`: Empty folder to download dependencies (Breakpad)
 
 ## Setup
 
 Run the `install_deps.sh` script to pull down the repository dependencies.
+
+On Windows run the `install_deps.bat` script.
 
 ### Linux
 
@@ -27,6 +32,26 @@ Build from terminal using the Make file.
 
 Build from terminal using the Make file.
 `cd sampleapp_macos && make`
+
+### Windows
+
+The Windows sample will upload the minidumps automatically if properly configured.
+
+Modify the `main.cpp` and change `YOUR_API_KEY` with your Raygun API key.
+
+Build from Visual Studio using the `RaygunBreakpad.sln` or use the `build.bat` script if you have `msbuild` installed.
+
+Run the compiled file `x64/Debug/RaygunBreakpad.exe`.
+
+You should see a similar output to:
+
+```
+raygun4breakpad\sampleapp_windows\x64\Debug> .\RaygunBreakpad.exe
+
+Minidump callback called with dump_path: ., minidump_id: 603b9607-249c-4869-9f08-b1377eb13dc9, succeeded: 1
+Minidump file created at: 603b9607-249c-4869-9f08-b1377eb13dc9.dmp
+Crash report sent: 1
+```
 
 #### Troubleshooting
 
