@@ -119,11 +119,15 @@ minidump_stackwalk_OBJ = \
 	deps/breakpad/src/processor/stackwalker_mips.o \
 	deps/breakpad/src/processor/stackwalker_ppc.o \
 	deps/breakpad/src/processor/stackwalker_ppc64.o \
+	deps/breakpad/src/processor/stackwalker_riscv.o \
+	deps/breakpad/src/processor/stackwalker_riscv64.o \
 	deps/breakpad/src/processor/stackwalker_sparc.o \
 	deps/breakpad/src/processor/stackwalker_x86.o \
 	deps/breakpad/src/processor/symbolic_constants_win.o \
 	deps/breakpad/src/processor/tokenize.o \
 	deps/breakpad/src/processor/minidump_stackwalk.o \
+	deps/breakpad/src/common/linux/scoped_tmpfile.o \
+	deps/breakpad/src/common/linux/scoped_pipe.o \
 	libdisasm.a \
 	$(NULL)
 
