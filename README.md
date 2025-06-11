@@ -1,10 +1,12 @@
 # raygun4breakpad
 
-Breakpad sample projects for Linux and MacOS to use with Raygun.com.
+Breakpad sample projects for Windows, Linux and MacOS to use with Raygun.com.
 
 Each sample is a small code project that integrates with the Breakpad source. When executed, the application crashes and creates a crash dump file (`.dmp`).
 
 Upload the resulting file to Raygun using the `send_minidump.sh` script contained in each sample folder.
+
+The Windows sample uses Breakpad's `CrashReportSender` to upload minidumps automatically.
 
 ## Project structure
 
